@@ -1,10 +1,3 @@
-
-let firstNumber = 3;
-let operator = '+';
-let secondNumber = 5;
-
-
-
 function add(a, b) {
     return a + b;
 }
@@ -36,7 +29,7 @@ function operate(operator, num1, num2) {
         case '*':
             return multiply(num1, num2);
         case '/':
-            return divide(num, num2);
+            return divide(num1, num2);
         default:
             console.error("Invalid operator");
             return null;

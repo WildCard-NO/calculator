@@ -1,3 +1,8 @@
+let firstNumber = "";
+let secondNumber ="";
+let operator = "";
+
+
 document.addEventListener("DOMContentLoaded", function() {
 
     // Variable to hold the value displayed on the calculator
@@ -23,7 +28,43 @@ document.addEventListener("DOMContentLoaded", function() {
                 displayValue = "";
                 display.value = displayValue;
             }
+
+
+            if (["+", "-", "*", "/"].includes(event.target.innerText)) {
+                if (!firstNumber) {
+                    firstNumber = displayValue;
+                    operator = event.target.innerText;
+                    displayValue = "";
+                } else {
+                    secondNumber = displayValue;
+                    let result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
+                    displayValue = result.toString();
+                    display.value = displayValue;
+
+                    firstNumber = result; // Save the reset for the next operation
+                    operator = event.target.innerText; // Save tje next operator
+                    displayValue = ""; // Reset displayValue for a possible next number
+                }
+            }
+
+        // If the equals button is clicked
+        if (event.target.id === "equals") {
+            if (firstNumber && operator) {
+                secondNumber = displayValue;
+                let result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
+                displayValue = result.toString();
+                display.value = displayValue;
+
+
+                firstNumber = "";
+                secondNumber = "";
+                operator ="";
+            }
         }
 
+        }
     });
 });
+
+
+
