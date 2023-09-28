@@ -1,6 +1,18 @@
 let firstNumber = "";
 let secondNumber = "";
 let operator = "";
+let resultCalculated = false;
+
+
+function addToLog(entry) {
+    const logDiv = document.querySelector('.content');
+    const logEntry = document.createElement('p');
+    logEntry.textContent = entry;
+    logDiv.appendChild(logEntry);
+}
+
+
+
 
 document.addEventListener("DOMContentLoaded", function() {
     const display = document.querySelector(".display");
@@ -13,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 firstNumber = "";
                 secondNumber = "";
                 operator = "";
+                resultCalculated = false
                 display.value = displayValue;
             });
         }
@@ -21,6 +34,10 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector(".buttons").addEventListener("click", function(event) {
         if (event.target.tagName === "BUTTON") {
             const lastNumber = displayValue.split(/[-+*/]/).slice(-1)[0];
+
+            if(resultCalculated && (!isNaN(event.target.innerText) || event.target.innerText === ".")) {
+                return;
+            }
             
             if (!isNaN(event.target.innerText)) {
                 displayValue += event.target.innerText;
@@ -62,14 +79,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 secondNumber = displayValue.slice(firstNumber.length + 1);
                 const rawResult = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
                 const result = parseFloat(rawResult.toFixed(3)); // This will round the numbers to 3 decimals
+                addToLog(`${firstNumber} ${operator} ${secondNumber} = ${result}`)
                 displayValue = result.toString();
                 display.value = displayValue;
-            
                 firstNumber = displayValue;
                 secondNumber = "";
                 operator = "";
+                resultCalculated = true;
             }
-            
         }
     });
 });
