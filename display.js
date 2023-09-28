@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const display = document.querySelector(".display");
     let displayValue = "";
 
-    // Separate listener for the 'C' button
     document.querySelectorAll(".buttons button").forEach(button => {
         if (button.textContent === "C") {
             button.addEventListener("click", function() {
@@ -61,14 +60,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (event.target.id === "equals") {
                 secondNumber = displayValue.slice(firstNumber.length + 1);
-                const result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
+                const rawResult = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
+                const result = parseFloat(rawResult.toFixed(3)); // This will round the numbers to 3 decimals
                 displayValue = result.toString();
                 display.value = displayValue;
-
+            
                 firstNumber = displayValue;
                 secondNumber = "";
                 operator = "";
             }
+            
         }
     });
 });
