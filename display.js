@@ -2,7 +2,7 @@ let firstNumber = "";
 let secondNumber = "";
 let operator = "";
 let resultCalculated = false;
-
+let displayValue = "";
 
 function addToLog(entry) {
     const logDiv = document.querySelector('.content');
@@ -37,6 +37,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if(resultCalculated && (!isNaN(event.target.innerText) || event.target.innerText === ".")) {
                 return;
+            }
+
+            if (resultCalculated && ["+", "-", "*", "/"].includes(event.target.innerText)) {
+                firstNumber = displayValue;
+                operator = "";
+                secondNumber = "";
+                resultCalculated = false;
             }
             
             if (!isNaN(event.target.innerText)) {
