@@ -10,7 +10,7 @@
     text-align: center;
     font-size: 30px;
     border-radius: 12px;
-    
+    background-color: black;
 }
 
 .container {
@@ -40,13 +40,14 @@
 button {
     padding: 10px;
     font-size: 1em;
-    background-color: #f0f0f0;
+    background-color: #48a934;
     border-radius: 5px;
     cursor: pointer;
+    color: white;
 }
 
 button:hover {
-    background-color: #ddd;
+    background-color: #09ce44;
 }
 
 
