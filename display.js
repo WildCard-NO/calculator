@@ -16,7 +16,6 @@ function addToLog(entry) {
 
 document.addEventListener("DOMContentLoaded", function() {
     const display = document.querySelector(".display");
-    let displayValue = "";
 
     document.querySelectorAll(".buttons button").forEach(button => {
         if (button.textContent === "C") {
